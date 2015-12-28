@@ -61,7 +61,7 @@ char ComputerPlayer::algorithmPlay(Board &b){
 	/*Select best move according to v value*/
 	for(std::vector<Node*>::iterator it=children.begin();it<children.end();it++){
 		double v = (*it)->getVDis().getSample();
-		std::cout << (*it)->getVDis().getVar() << (*it)->getVDis().getMean() << std::endl;
+		std::cout << "V value: Gaussian N(" << (*it)->getVDis().getMean() << ", " << (*it)->getVDis().getVar() << ")..." << std::endl;
 		(*it)->getBoard().display();
 		if((*it)->getVDis().getVar()==0)
 			continue;
