@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Pengkun Liu&#39;s code (Master thesis 2015) : Fork of the code Pengkun Liu&#39;s Master thesis, June 2015">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Pengkun Liu&#39;s code (Master thesis 2015)</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Naereen/Pengkun--Master-Thesis--2015">View on GitHub</a>
+
+          <h1 id="project_title">Pengkun Liu&#39;s code (Master thesis 2015)</h1>
+          <h2 id="project_tagline">Fork of the code Pengkun Liu&#39;s Master thesis, June 2015</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="implementation-and-experimentation-of-coherent-inference-in-game-tree" class="anchor" href="#implementation-and-experimentation-of-coherent-inference-in-game-tree" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implementation And Experimentation of <em>Coherent Inference in Game Tree</em>
+</h2>
+
+<blockquote>
+<p>Implementation in C++, forked from <a href="https://github.com/Charles-Lau-/thesis">Charles-Lau-/thesis</a>.</p>
+</blockquote>
+
+<h3>
+<a id="usage-of-this-program" class="anchor" href="#usage-of-this-program" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage of this program</h3>
+
+<p>You can either use the <a href="code/Makefile">Makefile</a> or the <a href="code/run">run</a> script, or compile manually:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># Compile the program</span>
+g++ -std=c++11 -o playGame <span class="pl-k">*</span>.cpp algorithm/<span class="pl-k">*</span>.cpp
+<span class="pl-c"># Run it (and keep its output)</span>
+./playGame <span class="pl-k">|</span> tee -a ./playGame.log</pre></div>
+
+<p>You can have a look to the (long) <a href="code/playGame.log">playGame.log</a> file for an example of its output.</p>
+
+<hr>
+
+<h3>
+<a id="overview-of-layout-of-the-program" class="anchor" href="#overview-of-layout-of-the-program" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview of layout of the program</h3>
+
+<h4>
+<a id="boardmain" class="anchor" href="#boardmain" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Board.main()</code>
+</h4>
+
+<p>Entrance of the program:</p>
+
+<ul>
+<li>In this function, two computer players are initialized;and the Board is initialized.</li>
+<li>Then a variable rounds is set, which means how many rounds are played between these two players.</li>
+</ul>
+
+<h4>
+<a id="computerplayer" class="anchor" href="#computerplayer" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>ComputerPlayer</code>
+</h4>
+
+<p>Model a ComputerPlayer:</p>
+
+<ul>
+<li>In this module, there are two functions, which are <code>randomPlay</code> and <code>algorithmPlay</code> respectively. These two functions will change the current board state. And they both return an identifier, which can let <code>Board.main()</code> determine whether the game should be continued or the game is winned by a player.</li>
+<li>In <code>randomPlay</code>, the player just plays the game randomly, while the player plays according to the algorithm in algorithmPlay.</li>
+<li>In <code>algorithmPlay</code>, just three things are done: first, set up parameters like number of descents, the root of descent tree; second, call <code>Ep.descent</code> to do descent whose parameter the the root; third, determine which move is the best one.</li>
+</ul>
+
+<h4>
+<a id="ep-expectation-propagation" class="anchor" href="#ep-expectation-propagation" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Ep</code> (Expectation-Propagation)</h4>
+
+<p>Core of the expectation propagation algorithm:</p>
+
+<ul>
+<li>Basically, in this module, the algorithm is implemented and all related message passing methods are implemented.</li>
+<li>The method descent is the backbone and other message passing methods serve for it.</li>
+<li>Additionally, all calculation related to Gaussian distribution are carried out in <code>Distribution</code> module.</li>
+</ul>
+
+<h4>
+<a id="distribution" class="anchor" href="#distribution" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Distribution</code>
+</h4>
+
+<ul>
+<li>All dirty works of calculation about Gaussian distributions and correlated coefficient.</li>
+<li>In this module, all messy distribution and correlated coefficient calcualtions are implemented.</li>
+<li>Notice should be paid tothe Min/Max calculation of multiple dependent Gaussian distributions.</li>
+</ul>
+
+<h4>
+<a id="node" class="anchor" href="#node" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Node</code>
+</h4>
+
+<p>Support build-up of <code>Game</code> tree:</p>
+
+<ul>
+<li>It is an entity  module, which supports implementation of <code>Game</code> node in a <code>Game</code> tree.</li>
+<li>In every node, it has both pointer to its parent and its children.</li>
+<li>Also, binded values and distributions are its properties.</li>
+<li>Notice: the <code>getChild()</code> function is varied if the <code>Board</code> is changed. For different game board, the strategy to get valid children nodes of a specific node is varied</li>
+</ul>
+
+<hr>
+
+<h3>
+<a id="license-and-authors" class="anchor" href="#license-and-authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>License and authors</h3>
+
+<ul>
+<li>Forked and cleaned up by <a href="https://github.com/Naereen">Lilian Besson (Naereen)</a>, 28/12/2015,</li>
+<li>Created by <a href="https://github.com/Charles-Lau-/">Pengkun Liu</a>, June 2015,</li>
+<li>Code released under the <a href="http://lbesson.mit-license.org">MIT license</a>.</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Pengkun Liu&#39;s code (Master thesis 2015) maintained by <a href="https://github.com/Naereen">Naereen</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-38514290-17");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
