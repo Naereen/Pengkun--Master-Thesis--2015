@@ -13,6 +13,63 @@ g++ -std=c++11 -o playGame *.cpp algorithm/*.cpp
 
 You can have a look to the (long) [playGame.log](code/playGame.log) file for an example of its output.
 
+### Limitation?
+The implementation is generic enough to be able to play to higher dimension Tic-Tac-Toe, not only the usual 3x3.
+
+> That's cool, yeah.
+
+### Example with a 4x4 Tic-Tac-Toe
+When the player **X** has to move, it examines a few possible moves, and compute the Gaussian value function learned for each position.
+For instance, image that **X** has to play on this board state:
+```
+O O X O
+_ _ _ X
+O _ X X
+_ X X O
+```
+
+Then it will explore all the possible moves (6 in our example):
+```
+V value: Gaussian N(-0.224098, 0.862775)...
+O O X O
+_ _ _ X
+O _ X X
+_ X X O
+
+... 2 other moves
+
+V value: Gaussian N(0.939144, 0.521763)...  <-- The best one!
+O O X O
+_ _ X _
+O _ X X
+_ X X O
+
+
+V value: Gaussian N(-1.40412, 0.9321)...
+O O X O
+_ _ _ _
+O X X X
+_ X X O
+
+
+V value: Gaussian N(-0.658714, 0.932628)...
+O O X O
+_ _ _ _
+O _ X X
+X X X O
+```
+
+Finally it selects the move corresponding to the more optimistic Gaussian value function V (``N(0.93, 0.52)`` has a mean value of **0.93**, higher than any other), here it is obviously the one which brings **X** to a win:
+
+```
+O O X O
+_ _ X _
+O _ X X
+_ X X O
+```
+
+At the end, our *coherent Gaussian inference player* (**X**) **wins 72% of the time**, which for 4x4 Tic-Tac-Toe is an extremely satisfactory result!
+
 ----
 
 ### Overview of layout of the program
