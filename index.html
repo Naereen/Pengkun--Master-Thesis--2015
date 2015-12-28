@@ -42,14 +42,76 @@
 <h3>
 <a id="usage-of-this-program" class="anchor" href="#usage-of-this-program" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage of this program</h3>
 
-<p>You can either use the <a href="code/Makefile">Makefile</a> or the <a href="code/run">run</a> script, or compile manually:</p>
+<p>You can either use the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/Makefile">Makefile</a> or the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/run">run</a> script, or compile manually:</p>
 
 <div class="highlight highlight-source-shell"><pre><span class="pl-c"># Compile the program</span>
 g++ -std=c++11 -o playGame <span class="pl-k">*</span>.cpp algorithm/<span class="pl-k">*</span>.cpp
 <span class="pl-c"># Run it (and keep its output)</span>
 ./playGame <span class="pl-k">|</span> tee -a ./playGame.log</pre></div>
 
-<p>You can have a look to the (long) <a href="code/playGame.log">playGame.log</a> file for an example of its output.</p>
+<p>You can have a look to the (long) <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/playGame.log">playGame.log</a> file for an example of its output.</p>
+
+<h3>
+<a id="limitation" class="anchor" href="#limitation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limitation?</h3>
+
+<p>The implementation is generic enough to be able to play to higher dimension Tic-Tac-Toe, not only the usual 3x3.</p>
+
+<blockquote>
+<p>That's cool, yeah.</p>
+</blockquote>
+
+<h3>
+<a id="example-with-a-4x4-tic-tac-toe" class="anchor" href="#example-with-a-4x4-tic-tac-toe" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example with a 4x4 Tic-Tac-Toe</h3>
+
+<p>When the player <strong>X</strong> has to move, it examines a few possible moves, and compute the Gaussian value function learned for each position.
+For instance, image that <strong>X</strong> has to play on this board state:</p>
+
+<pre><code>O O X O
+_ _ _ X
+O _ X X
+_ X X O
+</code></pre>
+
+<p>Then it will explore all the possible moves (6 in our example):</p>
+
+<pre><code>V value: Gaussian N(-0.224098, 0.862775)...
+O O X O
+_ _ _ X
+O _ X X
+_ X X O
+
+... 2 other moves
+
+V value: Gaussian N(0.939144, 0.521763)...  &lt;-- The best one!
+O O X O
+_ _ X _
+O _ X X
+_ X X O
+
+
+V value: Gaussian N(-1.40412, 0.9321)...
+O O X O
+_ _ _ _
+O X X X
+_ X X O
+
+
+V value: Gaussian N(-0.658714, 0.932628)...
+O O X O
+_ _ _ _
+O _ X X
+X X X O
+</code></pre>
+
+<p>Finally it selects the move corresponding to the more optimistic Gaussian value function V (<code>N(0.93, 0.52)</code> has a mean value of <strong>0.93</strong>, higher than any other), here it is obviously the one which brings <strong>X</strong> to a win:</p>
+
+<pre><code>O O X O
+_ _ X _
+O _ X X
+_ X X O
+</code></pre>
+
+<p>At the end, our <em>coherent Gaussian inference player</em> (<strong>X</strong>) <strong>wins 72% of the time</strong>, which for 4x4 Tic-Tac-Toe is an extremely satisfactory result!</p>
 
 <hr>
 
