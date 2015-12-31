@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Pengkun Liu&#39;s code (Master thesis 2015) : Fork of the code Pengkun Liu&#39;s Master thesis, June 2015">
+    <meta name="description" content="Pengkun Liu&#39;s code for Implementation And Experimentation of &quot;Coherent Inference in Game Tree&quot; (Master thesis 2015) : Fork of the code Pengkun Liu&#39;s Master thesis (Chalmers University), June 2015">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Pengkun Liu&#39;s code (Master thesis 2015)</title>
+    <title>Pengkun Liu&#39;s code for Implementation And Experimentation of &quot;Coherent Inference in Game Tree&quot; (Master thesis 2015)</title>
   </head>
 
   <body>
@@ -18,8 +18,8 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/Naereen/Pengkun--Master-Thesis--2015">View on GitHub</a>
 
-          <h1 id="project_title">Pengkun Liu&#39;s code (Master thesis 2015)</h1>
-          <h2 id="project_tagline">Fork of the code Pengkun Liu&#39;s Master thesis, June 2015</h2>
+          <h1 id="project_title">Pengkun Liu&#39;s code for Implementation And Experimentation of &quot;Coherent Inference in Game Tree&quot; (Master thesis 2015)</h1>
+          <h2 id="project_tagline">Fork of the code Pengkun Liu&#39;s Master thesis (Chalmers University), June 2015</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/zipball/master">Download this project as a .zip file</a>
@@ -42,14 +42,14 @@
 <h3>
 <a id="usage-of-this-program" class="anchor" href="#usage-of-this-program" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage of this program</h3>
 
-<p>You can either use the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/Makefile">Makefile</a> or the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/run">run</a> script, or compile manually:</p>
+<p>You can either use the <a href="./code/Makefile">Makefile</a> or the <a href="./code/run">run</a> script, or compile manually:</p>
 
 <div class="highlight highlight-source-shell"><pre><span class="pl-c"># Compile the program</span>
 g++ -std=c++11 -o playGame <span class="pl-k">*</span>.cpp algorithm/<span class="pl-k">*</span>.cpp
 <span class="pl-c"># Run it (and keep its output)</span>
 ./playGame <span class="pl-k">|</span> tee -a ./playGame.log</pre></div>
 
-<p>You can have a look to the (long) <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/playGame.log">playGame.log</a> file for an example of its output.</p>
+<p>You can have a look to the (long) <a href="./code/playGame.log">playGame.log</a> file for an example of its output.</p>
 
 <h3>
 <a id="limitation" class="anchor" href="#limitation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limitation?</h3>
@@ -119,30 +119,28 @@ _ X X O
 <a id="overview-of-layout-of-the-program" class="anchor" href="#overview-of-layout-of-the-program" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview of layout of the program</h3>
 
 <h4>
-<a id="boardmain" class="anchor" href="#boardmain" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Board.main()</code>
-</h4>
+<a id="boardmain-in-the-code-folder" class="anchor" href="#boardmain-in-the-code-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Board.main()</code> (in the <a href="./code/">code</a> folder)</h4>
 
 <p>Entrance of the program:</p>
 
 <ul>
-<li>In this function, two computer players are initialized;and the Board is initialized.</li>
+<li>In this function, two computer players are initialized; and the <code>Board</code> is initialized.</li>
 <li>Then a variable rounds is set, which means how many rounds are played between these two players.</li>
 </ul>
 
 <h4>
-<a id="computerplayer" class="anchor" href="#computerplayer" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>ComputerPlayer</code>
-</h4>
+<a id="computerplayer-in-the-code-folder" class="anchor" href="#computerplayer-in-the-code-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>ComputerPlayer</code> (in the <a href="./code/">code</a> folder)</h4>
 
 <p>Model a ComputerPlayer:</p>
 
 <ul>
 <li>In this module, there are two functions, which are <code>randomPlay</code> and <code>algorithmPlay</code> respectively. These two functions will change the current board state. And they both return an identifier, which can let <code>Board.main()</code> determine whether the game should be continued or the game is winned by a player.</li>
-<li>In <code>randomPlay</code>, the player just plays the game randomly, while the player plays according to the algorithm in algorithmPlay.</li>
+<li>In <code>randomPlay</code>, the player just plays the game randomly, while the player plays according to the algorithm in <code>algorithmPlay</code>.</li>
 <li>In <code>algorithmPlay</code>, just three things are done: first, set up parameters like number of descents, the root of descent tree; second, call <code>Ep.descent</code> to do descent whose parameter the the root; third, determine which move is the best one.</li>
 </ul>
 
 <h4>
-<a id="ep-expectation-propagation" class="anchor" href="#ep-expectation-propagation" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Ep</code> (Expectation-Propagation)</h4>
+<a id="ep-expectation-propagation-in-the-algorithm-folder" class="anchor" href="#ep-expectation-propagation-in-the-algorithm-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Ep</code> (Expectation-Propagation) (in the <a href="./code/algorithm/">algorithm</a> folder)</h4>
 
 <p>Core of the expectation propagation algorithm:</p>
 
@@ -153,8 +151,7 @@ _ X X O
 </ul>
 
 <h4>
-<a id="distribution" class="anchor" href="#distribution" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Distribution</code>
-</h4>
+<a id="distribution-in-the-algorithm-folder" class="anchor" href="#distribution-in-the-algorithm-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Distribution</code> (in the <a href="./code/algorithm/">algorithm</a> folder)</h4>
 
 <ul>
 <li>All dirty works of calculation about Gaussian distributions and correlated coefficient.</li>
@@ -163,8 +160,7 @@ _ X X O
 </ul>
 
 <h4>
-<a id="node" class="anchor" href="#node" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Node</code>
-</h4>
+<a id="node-in-the-algorithm-folder" class="anchor" href="#node-in-the-algorithm-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Node</code> (in the <a href="./code/algorithm/">algorithm</a> folder)</h4>
 
 <p>Support build-up of <code>Game</code> tree:</p>
 
@@ -174,6 +170,14 @@ _ X X O
 <li>Also, binded values and distributions are its properties.</li>
 <li>Notice: the <code>getChild()</code> function is varied if the <code>Board</code> is changed. For different game board, the strategy to get valid children nodes of a specific node is varied</li>
 </ul>
+
+<h4>
+<a id="other-files" class="anchor" href="#other-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other files?</h4>
+
+<blockquote>
+<p>The rest of the project are programs either easier to understand or less useful.
+<a href="http://naereen.github.io/Pengkun--Master-Thesis--2015/">See this other project for a more simply Reinforcement Learning agent for 3x3 Tic-Tac-Toe</a>.</p>
+</blockquote>
 
 <hr>
 
@@ -191,7 +195,7 @@ _ X X O
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Pengkun Liu&#39;s code (Master thesis 2015) maintained by <a href="https://github.com/Naereen">Naereen</a></p>
+        <p class="copyright">Pengkun Liu&#39;s code for Implementation And Experimentation of &quot;Coherent Inference in Game Tree&quot; (Master thesis 2015) maintained by <a href="https://github.com/Naereen">Naereen</a></p>
         <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
