@@ -115,8 +115,8 @@ Support build-up of ``Game`` tree:
 - Notice: the ``getChild()`` function is varied if the ``Board`` is changed. For different game board, the strategy to get valid children nodes of a specific node is varied
 
 #### Other files?
-> The rest of the project are programs either easier to understand or less useful.
-> [See this other project for a more simply Reinforcement Learning agent for 3x3 Tic-Tac-Toe](http://naereen.github.io/Pengkun--Master-Thesis--2015/).
+> - The rest of the project are programs either easier to understand or less useful.
+> - [See this other project for a more simple Reinforcement Learning agent for 3x3 Tic-Tac-Toe](http://naereen.github.io/Wesley-Tansey-RL-TicTacToe/).
 
 ----
 
