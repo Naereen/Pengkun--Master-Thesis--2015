@@ -32,7 +32,7 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h2>
-<a id="implementation-and-experimentation-of-coherent-inference-in-game-tree" class="anchor" href="#implementation-and-experimentation-of-coherent-inference-in-game-tree" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implementation And Experimentation of <em>Coherent Inference in Game Tree</em>
+<a id="implementation-and-experimentation-of-coherent-inference-in-game-tree" class="anchor" href="#implementation-and-experimentation-of-coherent-inference-in-game-tree" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementation And Experimentation of <em>Coherent Inference in Game Tree</em>
 </h2>
 
 <blockquote>
@@ -40,28 +40,24 @@
 </blockquote>
 
 <h3>
-<a id="usage-of-this-program" class="anchor" href="#usage-of-this-program" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage of this program</h3>
+<a id="usage-of-this-program" class="anchor" href="#usage-of-this-program" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage of this program</h3>
 
-<p>You can either use the <a href="./code/Makefile">Makefile</a> or the <a href="./code/run">run</a> script, or compile manually:</p>
+<p>You can either use the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/Makefile">Makefile</a> or the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/run">run</a> script, or compile manually:</p>
 
 <div class="highlight highlight-source-shell"><pre><span class="pl-c"># Compile the program</span>
 g++ -std=c++11 -o playGame <span class="pl-k">*</span>.cpp algorithm/<span class="pl-k">*</span>.cpp
 <span class="pl-c"># Run it (and keep its output)</span>
 ./playGame <span class="pl-k">|</span> tee -a ./playGame.log</pre></div>
 
-<p>You can have a look to the (long) <a href="./code/playGame.log">playGame.log</a> file for an example of its output.</p>
+<p>You can have a look to the (long) <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/playGame.log">playGame.log</a> file for an example of its output.</p>
 
 <h3>
-<a id="limitation" class="anchor" href="#limitation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limitation?</h3>
+<a id="limitation" class="anchor" href="#limitation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Limitation?</h3>
 
-<p>The implementation is generic enough to be able to play to higher dimension Tic-Tac-Toe, not only the usual 3x3.</p>
-
-<blockquote>
-<p>That's cool, yeah.</p>
-</blockquote>
+<p>The implementation is generic enough to be able to play to higher dimension <a href="https://en.wikipedia.org/wiki/Tic-Tac-Toe">Tic-Tac-Toe</a>, not only the usual 3x3.</p>
 
 <h3>
-<a id="example-with-a-4x4-tic-tac-toe" class="anchor" href="#example-with-a-4x4-tic-tac-toe" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example with a 4x4 Tic-Tac-Toe</h3>
+<a id="example-with-a-4x4-tic-tac-toe" class="anchor" href="#example-with-a-4x4-tic-tac-toe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example with a 4x4 Tic-Tac-Toe</h3>
 
 <p>When the player <strong>X</strong> has to move, it examines a few possible moves, and compute the Gaussian value function learned for each position.
 For instance, image that <strong>X</strong> has to play on this board state:</p>
@@ -103,7 +99,11 @@ O _ X X
 X X X O
 </code></pre>
 
-<p>Finally it selects the move corresponding to the more optimistic Gaussian value function V (<code>N(0.93, 0.52)</code> has a mean value of <strong>0.93</strong>, higher than any other), here it is obviously the one which brings <strong>X</strong> to a win:</p>
+<p>Finally, the Coherent Inference algorithm will sample from each of these Gaussian distribution (associated to each children of the current node).
+It selects the move corresponding to the highest sample (usuall, from the more optimistic Gaussian value function V).</p>
+
+<p>In the example showed above, <code>N(0.93, 0.52)</code> has a mean value of <strong>0.93</strong> (really higher than any other), so with high probability the sampling will select this action.
+Here it is the (only) one which directly brings <strong>X</strong> to a winning position:</p>
 
 <pre><code>O O X O
 _ _ X _
@@ -111,15 +111,18 @@ O _ X X
 _ X X O
 </code></pre>
 
-<p>At the end, our <em>coherent Gaussian inference player</em> (<strong>X</strong>) <strong>wins 72% of the time</strong>, which for 4x4 Tic-Tac-Toe is an extremely satisfactory result!</p>
+<p>This was only a very rough explanation of the algorithm.
+For all the details, please refer to the initial paper, or <a href="https://bitbucket.org/lbesson/mva15-project-graph-reinforcement-learning/downloads/">the slides or report for my project</a>.</p>
+
+<p>At the end, the <em>coherent Gaussian inference player</em> (<strong>X</strong>) <strong>wins 72% of the time</strong>, which for 4x4 Tic-Tac-Toe is an extremely satisfactory result!</p>
 
 <hr>
 
 <h3>
-<a id="overview-of-layout-of-the-program" class="anchor" href="#overview-of-layout-of-the-program" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview of layout of the program</h3>
+<a id="overview-of-layout-of-the-program" class="anchor" href="#overview-of-layout-of-the-program" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview of layout of the program</h3>
 
 <h4>
-<a id="boardmain-in-the-code-folder" class="anchor" href="#boardmain-in-the-code-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Board.main()</code> (in the <a href="./code/">code</a> folder)</h4>
+<a id="boardmain-in-the-code-folder" class="anchor" href="#boardmain-in-the-code-folder" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Board.main()</code> (in the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/">code</a> folder)</h4>
 
 <p>Entrance of the program:</p>
 
@@ -129,7 +132,7 @@ _ X X O
 </ul>
 
 <h4>
-<a id="computerplayer-in-the-code-folder" class="anchor" href="#computerplayer-in-the-code-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>ComputerPlayer</code> (in the <a href="./code/">code</a> folder)</h4>
+<a id="computerplayer-in-the-code-folder" class="anchor" href="#computerplayer-in-the-code-folder" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>ComputerPlayer</code> (in the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/">code</a> folder)</h4>
 
 <p>Model a ComputerPlayer:</p>
 
@@ -140,7 +143,7 @@ _ X X O
 </ul>
 
 <h4>
-<a id="ep-expectation-propagation-in-the-algorithm-folder" class="anchor" href="#ep-expectation-propagation-in-the-algorithm-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Ep</code> (Expectation-Propagation) (in the <a href="./code/algorithm/">algorithm</a> folder)</h4>
+<a id="ep-expectation-propagation-in-the-algorithm-folder" class="anchor" href="#ep-expectation-propagation-in-the-algorithm-folder" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Ep</code> (Expectation-Propagation) (in the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/algorithm/">algorithm</a> folder)</h4>
 
 <p>Core of the expectation propagation algorithm:</p>
 
@@ -151,7 +154,7 @@ _ X X O
 </ul>
 
 <h4>
-<a id="distribution-in-the-algorithm-folder" class="anchor" href="#distribution-in-the-algorithm-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Distribution</code> (in the <a href="./code/algorithm/">algorithm</a> folder)</h4>
+<a id="distribution-in-the-algorithm-folder" class="anchor" href="#distribution-in-the-algorithm-folder" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Distribution</code> (in the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/algorithm/">algorithm</a> folder)</h4>
 
 <ul>
 <li>All dirty works of calculation about Gaussian distributions and correlated coefficient.</li>
@@ -160,7 +163,7 @@ _ X X O
 </ul>
 
 <h4>
-<a id="node-in-the-algorithm-folder" class="anchor" href="#node-in-the-algorithm-folder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Node</code> (in the <a href="./code/algorithm/">algorithm</a> folder)</h4>
+<a id="node-in-the-algorithm-folder" class="anchor" href="#node-in-the-algorithm-folder" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Node</code> (in the <a href="https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/code/algorithm/">algorithm</a> folder)</h4>
 
 <p>Support build-up of <code>Game</code> tree:</p>
 
@@ -172,21 +175,21 @@ _ X X O
 </ul>
 
 <h4>
-<a id="other-files" class="anchor" href="#other-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other files?</h4>
+<a id="other-files" class="anchor" href="#other-files" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Other files?</h4>
 
 <blockquote>
 <p>The rest of the project are programs either easier to understand or less useful.
-<a href="http://naereen.github.io/Pengkun--Master-Thesis--2015/">See this other project for a more simply Reinforcement Learning agent for 3x3 Tic-Tac-Toe</a>.</p>
+<a href="http://naereen.github.io/Wesley-Tansey-RL-TicTacToe/">See this other project for a more simple Reinforcement Learning agent for 3x3 Tic-Tac-Toe</a>.</p>
 </blockquote>
 
 <hr>
 
 <h3>
-<a id="license-and-authors" class="anchor" href="#license-and-authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>License and authors</h3>
+<a id="authors-and-license" class="anchor" href="#authors-and-license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and License</h3>
 
 <ul>
-<li>Forked and cleaned up by <a href="https://github.com/Naereen">Lilian Besson (Naereen)</a>, 28/12/2015,</li>
-<li>Created by <a href="https://github.com/Charles-Lau-/">Pengkun Liu</a>, June 2015,</li>
+<li>Forked and cleaned up by <a href="https://github.com/Naereen">Lilian Besson (Naereen)</a>, 28/12/2015, for <a href="https://bitbucket.org/lbesson/mva15-project-graph-reinforcement-learning/">my MVA master project for the "Reinforcement Learning" course</a>.</li>
+<li>Created by <a href="https://github.com/Charles-Lau-/">Pengkun Liu</a>, April - June 2015,</li>
 <li>Code released under the <a href="http://lbesson.mit-license.org">MIT license</a>.</li>
 </ul>
       </section>
