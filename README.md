@@ -14,9 +14,7 @@ g++ -std=c++11 -o playGame *.cpp algorithm/*.cpp
 You can have a look to the (long) [playGame.log](./code/playGame.log) file for an example of its output.
 
 ### Limitation?
-The implementation is generic enough to be able to play to higher dimension Tic-Tac-Toe, not only the usual 3x3.
-
-> That's cool, yeah.
+The implementation is generic enough to be able to play to higher dimension [Tic-Tac-Toe](https://en.wikipedia.org/wiki/Tic-Tac-Toe), not only the usual 3x3.
 
 ### Example with a 4x4 Tic-Tac-Toe
 When the player **X** has to move, it examines a few possible moves, and compute the Gaussian value function learned for each position.
@@ -59,7 +57,11 @@ O _ X X
 X X X O
 ```
 
-Finally it selects the move corresponding to the more optimistic Gaussian value function V (``N(0.93, 0.52)`` has a mean value of **0.93**, higher than any other), here it is obviously the one which brings **X** to a win:
+Finally, the Coherent Inference algorithm will sample from each of these Gaussian distribution (associated to each children of the current node).
+It selects the move corresponding to the highest sample (usuall, from the more optimistic Gaussian value function V).
+
+In the example showed above, ``N(0.93, 0.52)`` has a mean value of **0.93** (really higher than any other), so with high probability the sampling will select this action.
+Here it is the (only) one which directly brings **X** to a winning position:
 
 ```
 O O X O
@@ -68,7 +70,10 @@ O _ X X
 _ X X O
 ```
 
-At the end, our *coherent Gaussian inference player* (**X**) **wins 72% of the time**, which for 4x4 Tic-Tac-Toe is an extremely satisfactory result!
+This was only a very rough explanation of the algorithm.
+For all the details, please refer to the initial paper, or [the slides or report for my project](https://bitbucket.org/lbesson/mva15-project-graph-reinforcement-learning/downloads/).
+
+At the end, the *coherent Gaussian inference player* (**X**) **wins 72% of the time**, which for 4x4 Tic-Tac-Toe is an extremely satisfactory result!
 
 ----
 
@@ -115,7 +120,7 @@ Support build-up of ``Game`` tree:
 
 ----
 
-### License and authors
-- Forked and cleaned up by [Lilian Besson (Naereen)](https://github.com/Naereen), 28/12/2015,
-- Created by [Pengkun Liu](https://github.com/Charles-Lau-/), June 2015,
+### Authors and License
+- Forked and cleaned up by [Lilian Besson (Naereen)](https://github.com/Naereen), 28/12/2015, for [my MVA master project for the "Reinforcement Learning" course](https://bitbucket.org/lbesson/mva15-project-graph-reinforcement-learning/).
+- Created by [Pengkun Liu](https://github.com/Charles-Lau-/), April - June 2015,
 - Code released under the [MIT license](http://lbesson.mit-license.org).
