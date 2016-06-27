@@ -13,7 +13,7 @@ g++ -std=c++11 -o playGame *.cpp algorithm/*.cpp
 
 You can have a look to the (long) [playGame.log](./code/playGame.log) file for an example of its output.
 
-### Limitation?
+### :bug: Limitation?
 The implementation is generic enough to be able to play to higher dimension [Tic-Tac-Toe](https://en.wikipedia.org/wiki/Tic-Tac-Toe), not only the usual 3x3.
 
 ### Example with a 4x4 Tic-Tac-Toe
@@ -73,7 +73,7 @@ _ X X O
 This was only a very rough explanation of the algorithm.
 For all the details, please refer to the initial paper, or [the slides or report for my project](https://bitbucket.org/lbesson/mva15-project-graph-reinforcement-learning/downloads/).
 
-At the end, the *coherent Gaussian inference player* (**X**) **wins 72% of the time**, which for 4x4 Tic-Tac-Toe is an extremely satisfactory result!
+At the end, the *coherent Gaussian inference player* (**X**) **wins 72% of the time**, which for 4x4 Tic-Tac-Toe is an extremely satisfactory result! :tada:
 
 ----
 
@@ -120,7 +120,9 @@ Support build-up of ``Game`` tree:
 
 ----
 
-### Authors and License
+### :scroll: Authors and License
 - Forked and cleaned up by [Lilian Besson (Naereen)](https://github.com/Naereen), 28/12/2015, for [my MVA master project for the "Reinforcement Learning" course](https://bitbucket.org/lbesson/mva15-project-graph-reinforcement-learning/).
 - Created by [Pengkun Liu](https://github.com/Charles-Lau-/), April - June 2015,
 - Code released under the [MIT license](http://lbesson.mit-license.org).
+
+[![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/Pengkun--Master-Thesis--2015/README.md?pixel)](https://github.com/Naereen/Pengkun--Master-Thesis--2015/)
