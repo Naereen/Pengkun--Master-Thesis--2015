@@ -122,7 +122,7 @@ Support build-up of ``Game`` tree:
 
 ### Authors
 - Forked and cleaned up by [Lilian Besson (Naereen)](https://github.com/Naereen), 28/12/2015, for [my MVA master project for the "Reinforcement Learning" course](https://bitbucket.org/lbesson/mva15-project-graph-reinforcement-learning/).
-- Created by [Pengkun Liu](https://github.com/Charles-Lau-/), April - June 2015,
+- Created by [Pengkun Liu](https://github.com/Charles-Lau-/), April - June 2015.
 
 ### :scroll: License ? [![GitHub license](https://img.shields.io/github/license/Naereen/Pengkun--Master-Thesis--2015.svg)](https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/LICENSE)
 [MIT Licensed](https://lbesson.mit-license.org/) (file [LICENSE.txt](LICENSE.txt)).
