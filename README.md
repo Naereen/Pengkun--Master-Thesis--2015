@@ -13,7 +13,7 @@ g++ -std=c++11 -o playGame *.cpp algorithm/*.cpp
 
 You can have a look to the (long) [playGame.log](./code/playGame.log) file for an example of its output.
 
-[![forthebadge made-with-C++](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://en.wikipedia.org/wiki/C++)
+[![forthebadge made-with-C++](https://img.shields.io/badge/Made%20with-C++-1f425f.svg)](https://en.wikipedia.org/wiki/C++)
 
 ### :bug: Limitation?
 The implementation is generic enough to be able to play to higher dimension [Tic-Tac-Toe](https://en.wikipedia.org/wiki/Tic-Tac-Toe), not only the usual 3x3.
