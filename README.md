@@ -13,6 +13,8 @@ g++ -std=c++11 -o playGame *.cpp algorithm/*.cpp
 
 You can have a look to the (long) [playGame.log](./code/playGame.log) file for an example of its output.
 
+[![forthebadge made-with-C++](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://en.wikipedia.org/wiki/C++)
+
 ### :bug: Limitation?
 The implementation is generic enough to be able to play to higher dimension [Tic-Tac-Toe](https://en.wikipedia.org/wiki/Tic-Tac-Toe), not only the usual 3x3.
 
@@ -116,16 +118,16 @@ Support build-up of ``Game`` tree:
 
 #### Other files?
 > - The rest of the project are programs either easier to understand or less useful.
-> - [See this other project for a more simple Reinforcement Learning agent for 3x3 Tic-Tac-Toe](http://naereen.github.io/Wesley-Tansey-RL-TicTacToe/).
+> - [See this other project for a more simple Reinforcement Learning agent for 3x3 Tic-Tac-Toe](https://naereen.github.io/Wesley-Tansey-RL-TicTacToe/).
 
 ----
 
 ### Authors
-- Forked and cleaned up by [Lilian Besson (Naereen)](https://github.com/Naereen), 28/12/2015, for [my MVA master project for the "Reinforcement Learning" course](https://bitbucket.org/lbesson/mva15-project-graph-reinforcement-learning/).
+- Forked and cleaned up by [Lilian Besson (Naereen)](https://github.com/Naereen), the 28/12/2015, for [my MVA master project for the "Reinforcement Learning" course](https://bitbucket.org/lbesson/mva15-project-graph-reinforcement-learning/).
 - Created by [Pengkun Liu](https://github.com/Charles-Lau-/), April - June 2015.
 
 ### :scroll: License ? [![GitHub license](https://img.shields.io/github/license/Naereen/Pengkun--Master-Thesis--2015.svg)](https://github.com/Naereen/Pengkun--Master-Thesis--2015/blob/master/LICENSE)
-[MIT Licensed](https://lbesson.mit-license.org/) (file [LICENSE.txt](LICENSE.txt)).
+[MIT Licensed](https://lbesson.mit-license.org/) (file [LICENSE](LICENSE)).
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://GitHub.com/Naereen/Pengkun--Master-Thesis--2015/graphs/commit-activity)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/Naereen/ama)
